@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Node</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* ===== GLOBAL ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:'Orbitron',monospace;
+    background:
+        radial-gradient(circle at top,rgba(0,255,120,0.08),transparent 40%),
+        linear-gradient(180deg,#020202,#000);
+    color:#9affc6;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 24px;
+    border-bottom:1px solid rgba(0,255,120,.2);
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(12px);
+}
+.navbar a{
+    text-decoration:none;
+    color:#00ff9c;
+    font-size:14px;
+}
+.danger-logo{
+    color:#ff2b2b;
+    margin-right:8px;
+}
+#hackme-text{
+    font-family:'Press Start 2P',monospace;
+    letter-spacing:2px;
+}
+.navbar-time{
+    color:#5affb2;
+    font-size:12px;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:35px;
+    border-radius:18px;
+    background:linear-gradient(145deg,rgba(0,255,120,.08),rgba(0,0,0,.8));
+    box-shadow:
+        0 0 40px rgba(0,255,120,.25),
+        inset 0 0 30px rgba(0,255,120,.12);
+    border:1px solid rgba(0,255,120,.25);
+}
+
+/* ===== TITLE ===== */
+h1{
+    text-align:center;
+    margin-bottom:14px;
+    font-size:26px;
+    color:#00ff9c;
+    text-shadow:0 0 15px rgba(0,255,120,.7);
+}
+.hacked-message{
+    text-align:center;
+    margin-bottom:30px;
+    color:#7bffbf;
+}
+
+/* ===== GRID ===== */
+.hacked-details-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+}
+.hacked-detail-item{
+    padding:18px;
+    border-radius:14px;
+    background:rgba(0,0,0,.6);
+    border:1px solid rgba(0,255,120,.25);
+    position:relative;
+    overflow:hidden;
+}
+.hacked-detail-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,transparent,rgba(0,255,120,.15),transparent);
+    animation:scan 4s linear infinite;
+}
+@keyframes scan{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(100%)}
+}
+.hacked-detail-item strong{
+    color:#00ff9c;
+}
+.all-data-blurred{
+    filter:blur(5px);/* Slightly less blur for better readability */
+    transition:.3s;
+    color:#cc0000;/* Darker red for a more ominous feel */
+    font-weight:900;/* Maintain extra bold */
+    text-shadow:0 0 5px rgba(255,0,0,.8);/* Subtle shadow for depth */
+}
+
+/* ===== LOADING OVERLAY ===== */
+.loading-data-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+.spinner{
+    width:70px;
+    height:70px;
+    border:4px solid rgba(0,255,120,.2);
+    border-top:4px solid #00ff9c;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+@keyframes spin{
+    100%{transform:rotate(360deg)}
+}
+.loading-data-overlay p{
+    margin-top:18px;
+    color:#7bffbf;
+}
+
+/* ===== BUTTON ===== */
+.option-btn{
+    margin:35px auto 0;
+    display:block;
+    padding:14px 36px;
+    font-family:'Orbitron',monospace;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(90deg,#00ff9c,#00c97a);
+    color:#001b10;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(0,255,120,.6);
+    transition:.3s;
+}
+.option-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 40px rgba(0,255,120,.9);
+}
+.download-btn{
+    background:linear-gradient(90deg,#ff5f6d,#ffc371);/* A warm gradient for distinct look */
+    box-shadow:0 0 25px rgba(255,95,109,.6);/* Matching shadow */
+    color:#2a0508;/* Dark text for contrast */
+}
+.download-btn:hover{
+    box-shadow:0 0 40px rgba(255,95,109,.9);/* Enhanced shadow on hover */
+}
+</style>
+</head>
+
+<body>
+
+<div class="container hacked-account-container">
+    <h1>ACCESS GRANTED <i class="fas fa-unlock-alt"></i></h1>
+    <p class="hacked-message">
+        Secure perimeter breached<br>
+        <span style="font-size:.9em;color:#84ff43;">Decrypting global data nodes…</span>
+    </p>
+
+    <div class="hacked-details-grid">
+        <div class="hacked-detail-item"><strong>Username:</strong> <span class="all-data-blurred">********</span></div>
+        <div class="hacked-detail-item"><strong>Password:</strong> <span class="all-data-blurred">********</span></div>
+        <div class="hacked-detail-item"><strong>Email:</strong> <span class="all-data-blurred">********</span></div>
+        <div class="hacked-detail-item"><strong>IP Address:</strong> <span class="all-data-blurred">***.***.***</span></div>
+        <div class="hacked-detail-item"><strong>Location:</strong> <span class="all-data-blurred">********</span></div>
+        <div class="hacked-detail-item"><strong>Account Created:</strong> <span class="all-data-blurred">********</span></div>
+        <div class="hacked-detail-item"><strong>Last Login:</strong> <span class="all-data-blurred">********</span></div>
+        <div class="hacked-detail-item"><strong>OS:</strong> <span class="all-data-blurred">********</span></div>
+        <div class="hacked-detail-item"><strong>Device:</strong> <span class="all-data-blurred">********</span></div>
+    </div>
+
+    <button class="option-btn">Back to Home</button>
+    <button class="option-btn download-btn" style="margin-top: 15px;">Download Data</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prank Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="login.html">
+                <i class="fas fa-globe danger-logo"></i>
+                <span class="brand-name" id="hackme-text"></span>
+            </a>
+        </div>
+        <div class="navbar-time" id="live-time"></div>
+    </nav>
+    <div class="container">
+        <h1>Select a Platform to Log In</h1>
+        <div class="options">
+            <button class="option-btn" data-platform="instagram">
+                <img src="instagram-logo-vector_svgstack_com_4011765566623.png" alt="Instagram Logo">
+                <span>Instagram</span>
+            </button>
+            <button class="option-btn" data-platform="facebook">
+                <img src="facebook-app-vector_svgstack_com_15451765566853.png" alt="Facebook Logo">
+                <span>Facebook</span>
+            </button>
+            <button class="option-btn" data-platform="youtube">
+                <img src="youtube-logo-vector_svgstack_com_4001765566698.png" alt="YouTube Logo">
+                <span>YouTube</span>
+            </button>
+            <button class="option-btn" data-platform="google">
+                <img src="google-logo_svgstack_com_50421765566662.png" alt="Google Logo">
+                <span>Google</span>
+            </button>
+            <button class="option-btn" data-platform="discord">
+                <img src="discord-vector-logo_svgstack_com_4591765566835.png" alt="Discord Logo">
+                <span>Discord</span>
+            </button>
+        </div>
+        <div class="search-section hidden">
+            <h2>Enter User ID or Email for Login</h2>
+            <input type="text" id="username-input" placeholder="e.g., username@example.com or user_id">
+            <button id="search-button">Log In</button>
+        </div>
+        <div class="hacking-section hidden">
+            <h2>Login Simulation in Progress...</h2>
+            <div id="log"></div>
+            <input type="password" id="password-input" placeholder="Enter Password (Fake)">
+            <button id="penetrate-button">Attempt Login</button>
+        </div>
+        <div class="features-section">
+            <h2>Get Access Instantly!</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Environment</h3>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-fingerprint"></i>
+                    <h3>Anonymity Guaranteed</h3>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Open Source Transparency</h3>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-user-secret"></i>
+                    <h3>Educational Purpose</h3>
+                </div>
+            </div>
+        </div>
+        <div class="profile-section hidden">
+            <h2>Login Attempt Complete!</h2>
+            <img id="profile-pic" src="https://www.gravatar.com/avatar/?d=mp" alt="Profile Picture">
+            <p><strong>User ID:</strong> <span id="displayed-username"></span></p>
+            <p><strong>Platform:</strong> <span id="displayed-platform"></span></p>
+            <p><strong>Status:</strong> <span style="color: #28a745;">Login Successful</span></p>
+            <button onclick="location.reload()">Start New Login Attempt</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="navbar.js"></script>
+    <script>
+        // Basic client-side protection: Redirect to login if not "logged in"
+        if (!sessionStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

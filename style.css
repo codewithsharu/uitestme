@@ -1,0 +1,829 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto Mono', monospace; /* Hacking-like font */
+    background-color: #1a1a1a; /* Dark background */
+    color: #fff; /* White text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 70px; /* Space for the fixed navbar */
+    overflow: auto;
+    font-size: 16px;
+    position: relative; /* For background animation */
+    background-image: 
+        linear-gradient(to left, rgba(0,255,0,0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,255,0,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.05),
+        rgba(0, 255, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.6); /* More transparent black container */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4); /* White glowing shadow */
+    padding: 60px; /* Increased padding */
+    text-align: center;
+    border-radius: 15px; /* More rounded corners */
+    max-width: 1000px; /* Increased max-width for more screen occupation */
+    width: 90%;
+    margin: 50px auto; /* Adjusted margin to account for padding-top on body and provide more space */
+}
+
+h1 {
+    font-size: 2.8em; /* Increased font size */
+    color: #fff; /* White heading color */
+    margin-bottom: 40px; /* Increased margin */
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* White glowing shadow */
+}
+
+h2 {
+    font-size: 2em; /* Increased font size */
+    color: #fff;
+    margin-bottom: 30px; /* Increased margin */
+    font-weight: 500;
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7); /* White glowing shadow */
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option-btn {
+    background-color: rgba(34, 34, 34, 0.8); /* Slightly transparent dark button background */
+    color: #fff; /* White text */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+    border-radius: 8px; /* Sharper corners */
+    padding: 16px 30px; /* Increased padding */
+    cursor: pointer;
+    font-size: 1.1em; /* Increased font size */
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-width: 160px; /* Increased min-width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); /* White glow */
+}
+
+.option-btn img {
+    filter: invert(1) hue-rotate(100deg) brightness(1.5); /* Adjust icon color for dark theme */
+    width: 26px;
+    height: 26px;
+    margin-right: 10px;
+}
+
+.option-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Lighter transparent white on hover */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* More intense white glow */
+    transform: translateY(-3px) scale(1.1); /* Slightly more pronounced lift and scale */
+    color: #fff;
+}
+
+/* Specific button styles for each platform (optional, but good for branding) */
+.option-btn[data-platform="instagram"]:hover {
+    background: linear-gradient(45deg, rgba(240, 148, 51, 0.6) 0%, rgba(230, 104, 60, 0.6) 25%, rgba(220, 39, 67, 0.6) 50%, rgba(204, 35, 102, 0.6) 75%, rgba(188, 24, 136, 0.6) 100%); /* More transparent gradient */
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow on hover */
+}
+
+.option-btn[data-platform="facebook"]:hover {
+    background-color: rgba(59, 89, 152, 0.6); /* More transparent background */
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow on hover */
+}
+
+.option-btn[data-platform="youtube"]:hover {
+    background-color: rgba(255, 0, 0, 0.6); /* More transparent background */
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow on hover */
+}
+
+.option-btn[data-platform="google"]:hover {
+    background-color: rgba(234, 67, 53, 0.6); /* More transparent background */
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow on hover */
+}
+
+.option-btn[data-platform="discord"]:hover {
+    background-color: rgba(114, 137, 218, 0.6); /* More transparent background */
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow on hover */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 24px);
+    padding: 14px;
+    margin: 15px 0;
+    background-color: rgba(13, 13, 13, 0.8); /* Slightly transparent dark input background */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+    color: #fff; /* White text */
+    border-radius: 6px;
+    outline: none;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Subtle white glow */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.9); /* More intense white glow on focus */
+}
+
+button {
+    background-color: rgba(0, 136, 0, 0.6); /* More transparent dark green button */
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* White glow */
+}
+
+button:hover {
+    background-color: rgba(0, 204, 0, 0.7); /* More transparent brighter green on hover */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); /* More intense white glow */
+    transform: translateY(-2px);
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Above everything else */
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    font-size: 1.5em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.spinner {
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #fff; /* White spinner */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-content p {
+    margin-top: 20px;
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+#log {
+    background-color: rgba(0, 0, 0, 0.6); /* More transparent very dark log background */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    min-height: 120px;
+    max-height: 250px;
+    overflow-y: auto;
+    text-align: left;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    color: #fff; /* White log text */
+    font-size: 0.95em;
+    line-height: 1.6;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3); /* Inner white glow for log */
+}
+
+#log span {
+    display: block;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.profile-section {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #00ff00;
+}
+
+.profile-section img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #00ff00;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.profile-section p {
+    font-size: 1.05em;
+    margin-bottom: 8px;
+    color: #fff; /* White text */
+}
+
+.profile-section strong {
+    color: #fff; /* White for emphasis */
+}
+
+.login-container {
+    max-width: 400px; /* Adjust max-width for login form */
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+.error-message {
+    color: #ff0000; /* Red for error messages, maintain for warning */
+    margin-top: 15px;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.9); /* More intense red glow */
+}
+
+.navbar {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* More transparent dark background for navbar */
+    padding: 15px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+    box-shadow: 0 2px 20px rgba(255, 255, 255, 0.5); /* More intense white glowing shadow */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand a {
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* Set link color to white */
+    display: flex;
+    align-items: center;
+}
+
+.danger-logo {
+    font-size: 30px;
+    margin-right: 10px;
+    color: #ff0000; /* Red color for the globe icon */
+    filter: none; /* Remove previous filter as it's not an image anymore */
+}
+
+.brand-name {
+    color: #fff; /* White color for Hackme */
+    font-size: 1.8em;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+    animation: typing 3s steps(6, end) forwards, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 6ch; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #fff; }
+}
+
+.navbar-time {
+    font-family: 'Press Start 2P', cursive;
+    color: #fff; /* White time text */
+    font-size: 1.2em;
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7); /* White glowing shadow */
+    margin-left: auto; /* Push to the left */
+    padding-right: 20px; /* Add some padding from the right edge */
+    margin-right: 20px; /* Add margin to the right */
+}
+
+.features-section {
+    margin-top: 80px; /* Increased margin-top for more space above cards */
+    padding-top: 50px;
+    border-top: 1px solid #00ff00;
+    text-align: center;
+}
+
+.features-section h2 {
+    margin-bottom: 30px;
+    color: #fff; /* White heading color */
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7); /* White glowing shadow */
+}
+
+.feature-grid {
+    display: flex; /* Changed to flexbox for single row layout */
+    justify-content: space-around; /* Distribute items evenly */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Reduced gap between cards */
+    margin-top: 40px;
+}
+
+.feature-item {
+    background-color: rgba(0, 0, 0, 0.6); /* More transparent black background */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px; /* More rounded corners */
+    width: 150px; /* Fixed width for square shape */
+    height: 150px; /* Fixed height for square shape */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px; /* Adjusted padding */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* White glow */
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); /* More intense white glow */
+}
+
+.feature-item i {
+    font-size: 2em; /* Reduced icon size */
+    margin-bottom: 10px; /* Adjusted margin */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* White glowing shadow for icons */
+}
+
+.feature-grid .feature-item:nth-child(1) i {
+    color: #ffd700; /* Gold */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 1); /* Intense gold glow */
+}
+
+.feature-grid .feature-item:nth-child(2) i {
+    color: #c0c0c0; /* Silver */
+    text-shadow: 0 0 10px rgba(192, 192, 192, 1); /* Intense silver glow */
+}
+
+.feature-grid .feature-item:nth-child(3) i {
+    color: #87ceeb; /* Sky Blue */
+    text-shadow: 0 0 10px rgba(135, 206, 235, 1); /* Intense blue glow */
+}
+
+.feature-grid .feature-item:nth-child(4) i {
+    color: #ff6347; /* Tomato */
+    text-shadow: 0 0 10px rgba(255, 99, 71, 1); /* Intense tomato glow */
+}
+
+.feature-item h3 {
+    font-size: 1.1em; /* Reduced font size for emphasis */
+    color: #fff; /* White text */
+    margin-bottom: 5px;
+}
+
+.feature-item p {
+    font-size: 1.1em; /* Increased font size for readability */
+    color: #00cc00;
+    line-height: 1.8; /* Increased line height for better readability */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px;
+        width: 90%;
+        max-width: unset; /* Remove max-width for smaller screens */
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    .option-btn {
+        min-width: unset;
+        width: calc(50% - 20px); /* Two buttons per row on smaller screens, adjusted gap */
+        padding: 14px 20px;
+    }
+
+    .option-btn img {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+    }
+
+    .feature-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .feature-item {
+        width: 130px;
+        height: 130px;
+        padding: 10px;
+    }
+
+    .feature-item h3 {
+        font-size: 1em;
+    }
+
+    .feature-item i {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    .option-btn {
+        width: 100%; /* Full width buttons on very small screens */
+        padding: 12px;
+    }
+
+    input[type="text"], input[type="password"], button {
+        font-size: 0.95em;
+        padding: 12px;
+    }
+
+    .features-section {
+        margin-top: 60px;
+        padding-top: 30px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr; /* Stack cards on very small screens */
+        gap: 20px;
+    }
+
+    .feature-item {
+        width: 100px;
+        height: 100px;
+        padding: 8px;
+    }
+
+    .feature-item h3 {
+        font-size: 0.9em;
+    }
+
+    .feature-item i {
+        font-size: 1.5em;
+    }
+}
+
+.container.penetration-container {
+    max-width: 800px; /* Adjust max-width for the new penetration page */
+    padding: 40px;
+    margin-top: 100px; /* More space from navbar */
+}
+
+.penetration-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    position: relative; /* To position the back button absolutely within */
+}
+
+#back-button {
+    position: absolute;
+    left: 20px; /* Position it on the left side */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for perfect vertical centering */
+    padding: 10px 20px; /* Smaller padding for a back button */
+    font-size: 0.9em; /* Smaller font size */
+    background-color: rgba(60, 60, 60, 0.8); /* Darker, slightly transparent background */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Subtle white glow */
+}
+
+#back-button:hover {
+    background-color: rgba(80, 80, 80, 0.9); /* Slightly lighter on hover */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* More intense glow on hover */
+    transform: translateY(-50%) scale(1.05); /* Slight scale on hover */
+}
+
+#back-button i {
+    margin-right: 8px;
+}
+
+#penetration-platform-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)); /* Glassy effect for image */
+}
+
+#penetration-platform-name {
+    font-size: 2.5em;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+.penetration-input-section {
+    margin-bottom: 30px;
+}
+
+#penetration-username-input {
+    width: calc(100% - 40px);
+    padding: 18px;
+    margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+#penetration-username-input:focus {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.9);
+}
+
+#start-penetration-btn {
+    background-color: rgba(0, 170, 0, 0.8);
+    color: #fff;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+#start-penetration-btn:hover {
+    background-color: rgba(0, 200, 0, 0.9);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 1);
+    transform: translateY(-3px);
+}
+
+.penetration-simulation-section {
+    margin-top: 40px;
+}
+
+.penetration-log {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker, more transparent log background */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 25px;
+    min-height: 200px;
+    max-height: 350px;
+    overflow-y: auto;
+    text-align: left;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    color: #0f0; /* Bright green log text */
+    font-size: 1em;
+    line-height: 1.7;
+    box-shadow: inset 0 0 15px rgba(0, 255, 0, 0.5); /* Inner green glow */
+}
+
+.penetration-log::-webkit-scrollbar {
+    width: 0px; /* Hide scrollbar */
+    height: 0px; /* Hide scrollbar for horizontal scrolling if any */
+}
+
+.penetration-log::-webkit-scrollbar-track {
+    background: transparent; /* Make track transparent */
+}
+
+.penetration-log::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Make thumb transparent */
+    border: none; /* Remove border */
+    box-shadow: none; /* Remove shadow */
+}
+
+.penetration-log span {
+    display: block;
+    margin-bottom: 10px;
+    color: #fff; /* White text for log messages */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); /* Subtle white glow for text */
+    animation: flicker 1.5s infinite alternate; /* Apply the new flicker animation */
+}
+
+@keyframes flicker {
+    0% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    5% { opacity: 0.95; text-shadow: 0 0 6px rgba(255, 255, 255, 0.7); }
+    10% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    15% { opacity: 0.98; text-shadow: 0 0 7px rgba(255, 255, 255, 0.8); }
+    20% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    25% { opacity: 0.9; text-shadow: 0 0 8px rgba(255, 255, 255, 0.9); }
+    30% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    70% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    75% { opacity: 0.9; text-shadow: 0 0 8px rgba(255, 255, 255, 0.9); }
+    80% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    85% { opacity: 0.95; text-shadow: 0 0 6px rgba(255, 255, 255, 0.7); }
+    90% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+    95% { opacity: 0.98; text-shadow: 0 0 7px rgba(255, 255, 255, 0.8); }
+    100% { opacity: 1; text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); }
+}
+
+.penetration-progress {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.progress-bar-container {
+    width: 85%;
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly less transparent background */
+    border-radius: 8px;
+    height: 20px;
+    margin-right: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #00ff00;
+    border-radius: 8px;
+    transition: width 0.6s ease-in-out;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 1); /* Intense green glow */
+}
+
+#penetration-percentage {
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+#finish-penetration-btn {
+    margin-top: 30px;
+    background-color: rgba(255, 0, 0, 0.8); /* Red finish button */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); /* Red glow */
+}
+
+#finish-penetration-btn:hover {
+    background-color: rgba(255, 0, 0, 0.9);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 1);
+}
+
+/* Hacked Account Page Styles */
+.hacked-account-container {
+    max-width: 650px; /* Increased max-width */
+    padding: 50px; /* Adjusted padding */
+    margin-top: 100px;
+}
+
+.hacked-account-container h1 {
+    font-size: 3em; /* Adjusted heading size */
+    margin-bottom: 30px; /* Adjusted margin */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9); /* Adjusted glow */
+}
+
+.hacked-message {
+    font-size: 1.5em; /* Adjusted message font size */
+    margin-bottom: 45px; /* Adjusted margin */
+    text-shadow: 0 0 9px rgba(0, 255, 0, 0.75); /* Adjusted glow */
+}
+
+.account-details p {
+    font-size: 1.4em; /* Slightly larger text */
+    margin-bottom: 25px; /* Adjusted margin */
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); /* Stronger white glow */
+}
+
+.account-details strong {
+    color: #00ffff; /* Cyan color for labels */
+    text-shadow: 0 0 7px rgba(0, 255, 255, 0.8); /* More intense cyan glow */
+}
+
+.all-data-blurred {
+    filter: blur(2px); /* Apply blur to all data */
+    transition: filter 0.3s ease; /* Smooth transition for potential hover effect */
+    color: #ff0000; /* Red color for blurred data */
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8); /* Red glow for blurred data */
+    font-family: 'Press Start 2P', cursive; /* Pixelated font for blurred data */
+    letter-spacing: 2px;
+}
+
+.hacked-details-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 15px; /* Adjusted gap */
+    margin-top: 35px;
+    text-align: left; /* Align text to the left */
+}
+
+.hacked-detail-item p {
+    font-size: 1.3em; /* Adjusted font size */
+    margin-bottom: 5px; /* Adjusted bottom margin */
+    color: #fff;
+    text-shadow: 0 0 7px rgba(255, 255, 255, 0.7); /* Adjusted glow */
+    line-height: 1.4; /* Adjusted line height for multi-line effect */
+}
+
+.hacked-detail-item strong {
+    color: #00ffff; /* Cyan color for labels */
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.7); /* Adjusted glow */
+    min-width: 130px; /* Adjusted min-width for labels */
+    display: inline-block;
+    vertical-align: top; /* Align label to top of potentially multi-line blurred text */
+}
+
+.loading-data-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px; /* Adjusted margin */
+    color: #00ff00; /* Green text for loading */
+    font-size: 1.25em; /* Adjusted font size */
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.8); /* Adjusted glow */
+}
+
+.loading-data-overlay .spinner {
+    border: 6px solid rgba(0, 255, 0, 0.2); /* Adjusted border size */
+    border-top: 6px solid #00ff00; /* Adjusted border size */
+    width: 35px;
+    height: 35px;
+    margin-bottom: 18px; /* Adjusted margin */
+}
+
+.loading-data-overlay p {
+    margin-top: 10px;
+}
+
+#back-to-home-btn {
+    margin-top: 50px; /* Adjusted margin-top */
+    padding: 14px 28px; /* Adjusted padding */
+    font-size: 1.05em; /* Adjusted font size */
+    box-shadow: 0 0 11px rgba(255, 255, 255, 0.35); /* Adjusted glow */
+}
+
+#back-to-home-btn:hover {
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.65); /* Adjusted glow */
+}
+
+/* Keep flicker-red animation, but remove hidden-password and obscured-data specific styles */
+@keyframes flicker-red {
+    0% { opacity: 1; text-shadow: 0 0 10px rgba(255, 0, 0, 0.9); }
+    50% { opacity: 0.9; text-shadow: 0 0 12px rgba(255, 0, 0, 1); }
+    100% { opacity: 1; text-shadow: 0 0 10px rgba(255, 0, 0, 0.9); }
+}
